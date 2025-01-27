@@ -6,7 +6,7 @@ const DashboardLayout = ({children}: {children: ReactNode}) => {
 
     return (
         <>
-            <main className="">
+            <main className="font-outfit">
                 <Header/>
 
                 {children}
