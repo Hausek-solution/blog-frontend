@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 import BlogCard from "../components/home/blog-card"
 import FeaturedArticleCarousal from "../components/home/featured-article-carousal"
 import LogoDark from "../components/icons/logo-dark"
@@ -14,11 +15,12 @@ import {
     TimelineSeparator,
     TimelineTitle,
   } from "../components/ui/timeline"
+import { ApplicationRoutes } from "../routes/routes-constant"
 
 const HomePage = () => {
     return (
         <>
-            <div className="text-text text-2xl app-container mt-20">
+            <div className="text-text text-2xl app-container mt-20 overflow-x-hidden">
                 <div className="">
                     <h1 className="text-center font-semibold text-xl sm:text-2xl md:text-3xl">Featured Articles</h1>
                 </div>
@@ -53,7 +55,9 @@ const HomePage = () => {
                         </div>
                         
                         <div className="justify-center flex mt-8">
-                            <Button className="bg-primary text-white text-base font-medium px-7 rounded-lg py-6">View more Blogs</Button>
+                            <Link to={ApplicationRoutes.BLOG}>                            
+                                <Button className="bg-primary text-white text-base font-medium px-7 rounded-lg py-6">View more Blogs</Button>
+                            </Link>
                         </div>
                     </div>
                 </div>
@@ -84,7 +88,10 @@ const HomePage = () => {
                         </div>
                         
                         <div className="justify-center flex mt-8">
-                            <Button className="bg-primary text-white text-base font-medium px-7 rounded-lg py-6">View more Research Insight</Button>
+                            {/* <Button className="bg-primary text-white text-base font-medium px-7 rounded-lg py-6"></Button> */}
+                            <Link to={ApplicationRoutes.RESEARCH_INSIGHT}>                            
+                                <Button className="bg-primary text-white text-base font-medium px-7 rounded-lg py-6">View more Research Insight</Button>
+                            </Link>
                         </div>
                     </div>
                 </div>

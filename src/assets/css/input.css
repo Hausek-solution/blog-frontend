@@ -65,6 +65,10 @@
     @apply mx-auto w-full max-w-screen-2xl px-5 ipad:px-12 mini:px-16;
   }
 
+  .blog-container {
+    @apply mx-auto w-full max-w-screen-xl px-5 ipad:px-12 mini:px-16;
+  }
+
   ::-webkit-scrollbar {
     width: 9px; /* Set the width of the scroll bar */
     height: 9px; /* Set the height of the horizontal scroll bar */

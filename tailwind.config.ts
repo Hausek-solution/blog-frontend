@@ -82,12 +82,11 @@ const config = {
         outfit : ["Outfit", "sans-serif"]
       },
       backgroundImage: {
-        "dashboard-gradient" : "linear-gradient(180deg, #DCEEE5 0%, #F7F9F8 100%)",
-        "dashboard-gradient-reverse" : "linear-gradient(180deg, #F7F9F8 0%,  #DCEEE5 100%)",
-        "login-bg" : "url('/images/backgrounds/login-bg.jpeg')",
-        'side-bar-btn-bg' : 'linear-gradient(to right, #0A1E5DF0, #153FC3D6)',
-        'acct-balance-bg' : "url('/images/backgrounds/acct-balance-vector.png')",
-        "card-bg-1": "url('/images/backgrounds/card-bg-1.png')",
+        // "dashboard-gradient" : "linear-gradient(180deg, #DCEEE5 0%, #F7F9F8 100%)",
+        // "dashboard-gradient-reverse" : "linear-gradient(180deg, #F7F9F8 0%,  #DCEEE5 100%)",
+        "blog-header-bg" : "url('/images/dummy/blog.jpg')",
+        "blog-header-2-bg" : "url('/images/dummy/blog2.jpg')",
+        // 'side-bar-btn-bg' : 'linear-gradient(to right, #0A1E5DF0, #153FC3D6)',
       },
       screens: {
         small: "420px",

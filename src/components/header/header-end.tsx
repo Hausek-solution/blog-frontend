@@ -44,7 +44,7 @@ const HeaderEnd = () => {
                         <div className="mt-10 flex flex-col gap-y-6 px-5">
                             {headerRoutes.map((route, index) => {
                                 return (
-                                    <Link to={route.link} key={route.name + index} className="flex w-max items-center space-x-4">
+                                    <Link to={route.link} key={route.name + index} className="flex w-max items-center space-x-4 font-outfit">
                                         <MobileDrawerClose className={cn("text-[#9495A5] text-[24px] leading-[29.06px font-medium tracking-[0.096px]",
                                             {
                                                 "text-white" : route.link === path
