@@ -7,7 +7,7 @@ type BlogProps = {
     img: string,
     slug: string,
     type: string
-}
+} 
 
 const BlogCard = ({date, img, title, slug, type}: BlogProps) => {
     return (
