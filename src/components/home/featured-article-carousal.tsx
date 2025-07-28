@@ -10,11 +10,11 @@ import {
   } from "../../components/ui/carousel"
 import { getFeaturedArticles } from "../../request/article-request"
 import { AxiosResponse } from "axios"
-import { RecentArticles } from "../../types/article-type"
+import { RecentArticleResponse, RecentArticles } from "../../types/article-type"
    
 const FeaturedArticleCarousal = () => {
 
-    const [article, setArticles] = useState<RecentArticles[]>([])
+    const [article, setArticles] = useState<RecentArticleResponse[]>([])
     const [loading, setLoading] = useState(false)
 
     const plugin = useRef(
@@ -24,10 +24,10 @@ const FeaturedArticleCarousal = () => {
     const fetchFeaturedArticles = async () => {
         setLoading(true)
         const response  = await getFeaturedArticles()
-        const axiosRepsonse = response as AxiosResponse<RecentArticles[], any>
+        const axiosRepsonse = response as AxiosResponse<RecentArticles, any>
 
         if (axiosRepsonse.status === 200) {
-            setArticles(axiosRepsonse.data)
+            setArticles(axiosRepsonse.data.items)
         } else {
 
         }
