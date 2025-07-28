@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom"
 import { ApplicationRoutes } from "../../routes/routes-constant"
+import { format } from "date-fns"
 
 type RelatedArticleProps = {
     img: string,
@@ -27,7 +28,7 @@ const RelatedArticle = ({
                     />
                 </div>
                 <p className="text-primary text-base group-hover:text-secondary sm:text-left mt-2 text-center">{title}</p>
-                <p className="text-xs mt-1 text-center sm:text-left">{date}</p>
+                <p className="text-xs mt-1 text-center sm:text-left">{format(date, "PPP")}</p>
             </Link>
         </>
     )

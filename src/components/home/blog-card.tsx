@@ -1,10 +1,15 @@
+import { Link } from "react-router-dom"
+import { ApplicationRoutes } from "../../routes/routes-constant"
+
 type BlogProps = {
     title: string,
     date: string,
-    img: string
+    img: string,
+    slug: string,
+    type: string
 }
 
-const BlogCard = ({date, img, title}: BlogProps) => {
+const BlogCard = ({date, img, title, slug, type}: BlogProps) => {
     return (
         <>
             <div className="border-gray-300 border rounded-lg h-full cursor-pointer">
@@ -22,7 +27,7 @@ const BlogCard = ({date, img, title}: BlogProps) => {
 
                     <div className="flex justify-between items-center pt-1 absolute w-full bottom-0 left-0 px-4 py-4">
                         <p className="text-sm text-gray-500">{date}</p>
-                        <p className="text-base text-secondary font-medium">Continue Reading</p>
+                        <Link to={`${type == "blog" ? ApplicationRoutes.BLOG : ApplicationRoutes.RESEARCH_INSIGHT}/${slug}`} className="text-base text-secondary font-medium">Continue Reading</Link>
                     </div>
                 </div>
             </div>

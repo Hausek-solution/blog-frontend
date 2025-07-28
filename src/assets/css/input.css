@@ -91,6 +91,7 @@
   html {
     scrollbar-width: thin; /* Width of the scrollbar */
     scrollbar-color: #2040A8 #f1f1f1; /* Color of the thumb and track */
+    scroll-behavior: smooth;
   }
   
   /* Custom class for specific element */
@@ -153,4 +154,42 @@
   .side-nav {
     height: calc(100vh - 80px);
   }
+}
+
+
+/* Header styles */
+.ce-header--h1 {
+  font-size: 2.5em; /* Large size for h1 */
+  font-weight: bold;
+  margin: 1.5em 0 0.5em;
+}
+
+.ce-header--h2 {
+  font-size: 2em; /* Slightly smaller for h2 */
+  font-weight: bold;
+  margin: 1.25em 0 0.5em;
+}
+
+.ce-header--h3 {
+  font-size: 1.75em; /* Smaller for h3 */
+  font-weight: bold;
+  margin: 1em 0 0.5em;
+}
+
+.ce-header--h4 {
+  font-size: 1.5em; /* Even smaller for h4 */
+  font-weight: bold;
+  margin: 0.75em 0 0.5em;
+}
+
+.ce-header--h5 {
+  font-size: 1.25em; /* Small for h5 */
+  font-weight: bold;
+  margin: 0.5em 0 0.5em;
+}
+
+.ce-header--h6 {
+  font-size: 1em; /* Smallest for h6 */
+  font-weight: bold;
+  margin: 0.25em 0 0.5em;
 }

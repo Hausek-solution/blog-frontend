@@ -10,7 +10,7 @@ const DashboardLayout = ({children}: {children: ReactNode}) => {
                 <Header/>
 
                 {children}
-
++
                 <Footer/>
             </main>
         </>

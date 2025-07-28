@@ -2,6 +2,7 @@ import { LucideChevronsRight } from "lucide-react"
 import { Button } from "../ui/button"
 import { Link } from "react-router-dom"
 import { ApplicationRoutes } from "../../routes/routes-constant"
+import { formatDate } from "date-fns"
 
 export type DummyBlogType = {
     title: string,
@@ -32,7 +33,7 @@ const BlogPostCard = ({
 
                 <div className="h-max md:w-2/4">
                     <p className="text-2xl font-medium">{title}</p>
-                    <p className="text-secondary py-2">{date}</p>
+                    <p className="text-secondary py-2">{formatDate(date, "PPP")}</p>
 
                     <p className="text-lg">{content.slice(0, content.lastIndexOf(" ", 150))}...</p>
 

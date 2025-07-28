@@ -1,51 +1,50 @@
-import { useEffect } from "react"
+import { useCallback, useEffect, useState } from "react"
 import BlogPostCard, { DummyBlogType } from "../components/home/blog-post-card"
-import {
-    Pagination,
-    PaginationContent,
-    PaginationEllipsis,
-    PaginationItem,
-    PaginationLink,
-    PaginationNext,
-    PaginationPrevious,
-  } from "../components/ui/pagination"
+import { RecentArticleResponse, RecentArticles } from "../types/article-type"
+import { getArticlesBasedOnCategories } from "../request/article-request"
+import { AxiosResponse } from "axios"
+import LoadingSpinner from "../components/loader"
+import { LucideLoaderCircle } from "lucide-react"
+import { Button } from "../components/ui/button"
 
-const dummyBlogPost: DummyBlogType[] = [
-    {
-        content: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Non beatae harum autem quo voluptatum necessitatibus, inventore omnis repellendus, natus magnam excepturi 
-        aliquid quam. Voluptate praesentium provident minus atque aspernatur reiciendis? Sequi vitae repudiandae eum nam esse aut quaerat illo optio deleniti odio ullam sapiente hic quae et sint, 
-        corrupti voluptates dolor quia eos atque ipsam error voluptas molestiae fugit. Officiis.`,
-        date: 'December 12, 2023',
-        img: "/images/dummy/blog2.jpg",
-        slug: 'an-article-on-i-do-not-know',
-        title: "Saving for your dream house: Strategies for Low and Middle-Income Earners",
-        type: "blog"
-    },
-    {
-        content: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Non beatae harum autem quo voluptatum necessitatibus, inventore omnis repellendus, natus magnam excepturi 
-        aliquid quam. Voluptate praesentium provident minus atque aspernatur reiciendis? Sequi vitae repudiandae eum nam esse aut quaerat illo optio deleniti odio ullam sapiente hic quae et sint, 
-        corrupti voluptates dolor quia eos atque ipsam error voluptas molestiae fugit. Officiis.`,
-        date: 'December 12, 2023',
-        img: "/images/dummy/dummy.jpg",
-        slug: 'an-article-on-i-do-not-know',
-        title: "Saving for your dream house: Strategies for Low and Middle-Income Earners",
-    },
-    {
-        content: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Non beatae harum autem quo voluptatum necessitatibus, inventore omnis repellendus, natus magnam excepturi 
-        aliquid quam. Voluptate praesentium provident minus atque aspernatur reiciendis? Sequi vitae repudiandae eum nam esse aut quaerat illo optio deleniti odio ullam sapiente hic quae et sint, 
-        corrupti voluptates dolor quia eos atque ipsam error voluptas molestiae fugit. Officiis.`,
-        date: 'December 12, 2023',
-        img: "/images/dummy/blog2.jpg",
-        slug: 'an-article-on-i-do-not-know',
-        title: "Saving for your dream house: Strategies for Low and Middle-Income Earners"
-    },
-]
 
 
 const BlogListPage = () => {
+    const [blogArticles, setblogArticles] = useState<RecentArticleResponse[]>([])
+    const [loadingBlog, setLoadingBlog] = useState(false)
+    const [page, setPage] = useState(1)
+    const [limit, setLimit] = useState(10)
+    const [totalPages, setTotalPages] = useState(0)
+
+    const fetchBlogArticles = async () => {
+        setLoadingBlog(true)
+        const response  = await getArticlesBasedOnCategories(limit, "blog", page)
+        const axiosRepsonse = response as AxiosResponse<RecentArticles, any>
+
+        if (axiosRepsonse.status === 200) {
+            setblogArticles(axiosRepsonse.data.items)
+            setTotalPages(axiosRepsonse.data.total_items)
+            console.log(axiosRepsonse.data)
+        } else {
+
+        }
+        setLoadingBlog(false)
+    }
+
+    useEffect(() => {
+        fetchBlogArticles().then()
+    }, [])
+
+
     useEffect(() => {
         window.scrollTo(0,0)
     }, [])
+
+    const handlePageChange = useCallback((newPage: number) => {
+        if (newPage >= 1 && newPage <= totalPages) {
+            setLimit(newPage);
+        }
+    }, [totalPages]);
 
     return (
         <>
@@ -56,50 +55,36 @@ const BlogListPage = () => {
                     </div>
                 </div>
 
-                <div className="blog-container flex flex-col gap-16 my-20">
-                    { dummyBlogPost.map((_, index) => {
-                        return (
-                            <BlogPostCard
-                                content={_.content}
-                                date={_.date}
-                                img={_.img}
-                                slug={_.slug}
-                                title={_.title}
-                                key={index}
-                                type="blog"
-                            />
-                        )
-                    })
+                { loadingBlog ?
+                    <div className="flex items-center min-h-[50vh] justify-center">
+                        <LucideLoaderCircle size={30} className="animate-spin"/>
+                    </div> :
 
-                    }
-                </div>
+                    <div className="blog-container flex flex-col gap-16 my-20">
+                        { blogArticles.map((_, index) => {
+                            return (
+                                <BlogPostCard
+                                    content={_.short_content}
+                                    date={_.updated_at}
+                                    img={_.featured_image}
+                                    slug={_.slug}
+                                    title={_.title}
+                                    key={index}
+                                    type="blog"
+                                />
+                            )
+                        })}
+                    </div>
+                }
                 
-                <div className="mb-20">
+                <div className="mb-20 mini:pt-10 blog-container">
                     <div className="">
-                        <Pagination className="text-base">
-                            <PaginationContent>
-                                <PaginationItem>
-                                <PaginationPrevious href="#" />
-                                </PaginationItem>
-                                <PaginationItem>
-                                <PaginationLink href="#">1</PaginationLink>
-                                </PaginationItem>
-                                <PaginationItem>
-                                <PaginationLink href="#" isActive>
-                                    2
-                                </PaginationLink>
-                                </PaginationItem>
-                                <PaginationItem>
-                                <PaginationLink href="#">3</PaginationLink>
-                                </PaginationItem>
-                                <PaginationItem>
-                                <PaginationEllipsis />
-                                </PaginationItem>
-                                <PaginationItem>
-                                <PaginationNext href="#" />
-                                </PaginationItem>
-                            </PaginationContent>
-                        </Pagination>
+                        <Pagination
+                            currentPage={page}
+                            onPageChange={handlePageChange}
+                            limit={limit}
+                            totalItems={totalPages}
+                        />
                     </div>
                 </div>
             </div>
@@ -108,3 +93,58 @@ const BlogListPage = () => {
 }
 
 export default BlogListPage
+
+
+type PaginationProps = {
+    currentPage: number, 
+    totalItems: number, 
+    onPageChange: (page: number) => void,
+    limit: number
+}
+
+export const Pagination = ({ currentPage, totalItems, onPageChange, limit }: PaginationProps) => {
+    const totalPages = Math.ceil(totalItems / limit);
+
+    const handlePrevious = () => {
+        if (currentPage > 1) {
+            onPageChange(currentPage - 1);
+        }
+    };
+
+    const handleNext = () => {
+
+        if (currentPage < (totalPages)) {
+            onPageChange(currentPage + 1);
+        }
+    };
+
+    return (
+        <div className="flex items-center justify-between p-4 bg-white rounded-lg mt-4">
+            <Button
+                onClick={handlePrevious}
+                disabled={currentPage === 1}
+                className={`px-4 py-2 rounded-md font-semibold transition-colors duration-200 
+                            ${currentPage === 1 
+                                ? 'bg-gray-200 text-gray-500 cursor-not-allowed' 
+                                : 'bg-primary text-white shadow-sm'
+                            } focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50`}
+            >
+                Previous
+            </Button>
+            <span className="text-base font-medium text-gray-600">
+                Page {currentPage}
+            </span>
+            <Button
+                onClick={handleNext}
+                disabled={currentPage >= totalPages}
+                className={`px-4 py-2 rounded-md font-semibold transition-colors duration-200 
+                            ${currentPage >= totalPages 
+                                ? 'bg-gray-200 text-gray-500 cursor-not-allowed' 
+                                : 'bg-primary text-white shadow-sm'
+                            } focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50`}
+            >
+                Next
+            </Button>
+        </div>
+    );
+};
