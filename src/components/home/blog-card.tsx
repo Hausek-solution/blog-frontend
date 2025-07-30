@@ -22,7 +22,7 @@ const BlogCard = ({date, img, title, slug, type}: BlogProps) => {
                     <div className="absolute top-0 left-0 w-full h-full bg-black/20 hidden"></div>
                 </div>
 
-                <div className="min-h-32 p-2 px-4 relative">
+                <div className="min-h-32 p-2 pb-20 md:pb-0 px-4 relative">
                     <p className="font-semibold text-primary">{title}</p>
 
                     <div className="flex justify-between items-center pt-1 absolute w-full bottom-0 left-0 px-4 py-4">

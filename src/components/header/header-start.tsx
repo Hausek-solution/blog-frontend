@@ -4,7 +4,7 @@ import LogoLight from "../icons/logo-light"
 const HeadeStart = () => {
     return (
         <>
-            <LogoDark classname="scale-110"/>
+            <LogoDark classname="scale-100"/>
         </>
     )
 }

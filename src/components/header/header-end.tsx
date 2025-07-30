@@ -34,7 +34,7 @@ const HeaderEnd = () => {
                     <MobileDrawerContent side="left" className="z-[10000000] bg-[#11201b] border-none overflow-y-auto pb-12">
                         <MobileDrawerHeader className="mt-5">
                             <div className="flex justify-between items-center w-full">
-                                <LogoLight classname=""/>
+                                <LogoLight classname="scale-90"/>
                                 <MobileDrawerClose>
                                     <LucideX fill="#B8B08D" className="text-[#9495A5]"/>
                                 </MobileDrawerClose>
