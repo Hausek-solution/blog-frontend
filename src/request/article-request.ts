@@ -1,6 +1,6 @@
 import { AxiosResponse } from "axios";
 import { axiosInstance } from "../context/axios-context";
-import { ArticleResponseType, Categories, RecentArticles } from "../types/article-type";
+import { ArticleResponseType, Categories, RecentArticleResponse, RecentArticles } from "../types/article-type";
 
 export const getRecentArticles = async (limit: number) : Promise<AxiosResponse<RecentArticles, any> | undefined> => {
     const response = axiosInstance.get(`articles/recent_articles?limit=${limit}`)
@@ -27,7 +27,7 @@ export const getRelatedArticles = async (article_id: number, limit: number) : Pr
     return response
 }
 
-export const getFeaturedArticles = async () : Promise<AxiosResponse<RecentArticles, any> | undefined> => {
+export const getFeaturedArticles = async () : Promise<AxiosResponse<RecentArticleResponse[], any> | undefined> => {
     const response = axiosInstance.get(`articles/featured_article`)
     return response
 }
