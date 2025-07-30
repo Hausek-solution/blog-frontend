@@ -24,10 +24,10 @@ const FeaturedArticleCarousal = () => {
     const fetchFeaturedArticles = async () => {
         setLoading(true)
         const response  = await getFeaturedArticles()
-        const axiosRepsonse = response as AxiosResponse<RecentArticles, any>
+        const axiosRepsonse = response as AxiosResponse<RecentArticleResponse[], any>
 
         if (axiosRepsonse.status === 200) {
-            setArticles(axiosRepsonse.data.items)
+            setArticles(axiosRepsonse.data)
         } else {
 
         }

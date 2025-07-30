@@ -20,7 +20,7 @@ const HeaderEnd = () => {
             <div className="hidden sm:flex items-center space-x-5 text-primary">
                 { headerRoutes.map(_ => {
                     return (
-                        <Link className="text-lg" to={_.link}>{_.name}</Link>
+                        <Link key={_.name} className="text-lg" to={_.link}>{_.name}</Link>
                     )
                 })}
             </div>
